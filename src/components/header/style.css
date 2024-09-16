@@ -1,0 +1,31 @@
+.app-header .ant-layout-header {
+    height: 64px;
+    padding: 0;
+    line-height: 0px;
+    display: flex;
+    align-items: center;
+    background-color: #ae5817;
+}
+
+.app-header img.header-img {
+    height: 70px;
+    width: auto;
+    margin: 0px 12px 0px 20px;
+}
+
+.app-header .ant-menu {
+    height: 100%;
+    border: none;
+    flex-grow: 1;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    background-color: #ae5817;
+}
+
+.app-header .link {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    color: #73b830;
+}

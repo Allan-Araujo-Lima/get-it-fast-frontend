@@ -1,0 +1,15 @@
+.content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: auto;
+    justify-content: center;
+    align-items: center;
+}
+
+.registercard {
+    align-content: center;
+    height: auto;
+    width: 100%;
+    text-align: center;
+}
