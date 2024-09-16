@@ -2,7 +2,7 @@ import axios from "axios";
 import { redirect } from "react-router-dom";
 import { decodeTokenAsync, removeToken } from "../utils/script";
 
-const baseURL = "http://localhost:3001"
+const baseURL = import.meta.env.VITE_LOCAL_BASEURL
 
 const api = axios.create({
     baseURL
