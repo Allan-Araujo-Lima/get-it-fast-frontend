@@ -1,10 +1,9 @@
+import { Layout } from 'antd';
 import { useEffect, useState } from 'react';
-import { Divider, Layout } from 'antd';
-import axios from 'axios';
 
-import { Card, CardContent, CardHeader, CardTitle } from "../../components/ui/card"
-import { cn } from "../../lib/utils"
-import "./style.css"
+import api from '../../api/axios';
+import { Card, CardContent, CardHeader, CardTitle } from "../../components/ui/card";
+import "./style.css";
 
 const { Content } = Layout;
 
@@ -13,8 +12,7 @@ export const Home = () => {
     const [presentation, setPresentation] = useState("")
 
     useEffect(() => {
-        axios
-            .get("http://localhost:7777/get_data")
+        api.get("/get_data")
             .then((response) => {
                 const data = response.data;
                 setPresentation(data["body"])
@@ -23,6 +21,7 @@ export const Home = () => {
                 console.error(e);
             })
     }, [])
+
 
     return (
         <Content>
