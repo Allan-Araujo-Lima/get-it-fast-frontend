@@ -13,7 +13,8 @@ const formSchema = z.object({
     first_name: z.string().min(3, "O nome deve ter no mínimo 3 letras."),
     last_name: z.string().min(3, "O último nome deve ter no mínimo 3 letras."),
     email: z.string().email("Formato de e-mail inválido."),
-    password: z.string().min(8, "A senha deve ter no mínimo 8 caracteres.")
+    password: z.string().min(8, "A senha deve ter no mínimo 8 caracteres."),
+    password_confirmation: z.string()
 });
 
 export function ProfileForm() {
@@ -45,7 +46,6 @@ export function ProfileForm() {
             toast.success("Usuário criado com sucesso.")
             navigate("/login")
         } catch (error) {
-            console.log(error)
             toast.error("Erro inesperado, tente novamente.")
         }
     }
@@ -118,7 +118,7 @@ export function ProfileForm() {
                                 Confirme sua senha
                             </FormLabel>
                             <FormControl>
-                                <Input type="password" />
+                                <Input {...field} type="password" />
                             </FormControl>
                         </FormItem>
                     )}
