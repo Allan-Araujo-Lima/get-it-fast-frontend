@@ -23,12 +23,16 @@
     flex-direction: row;
     padding-left: 30px;
     padding-right: 30px;
+    align-content: center;
+    justify-content: center;
 }
 
 .card {
+    flex-direction: column;
     width: 100%;
     height: auto;
     margin: 12px;
+    min-width: 300px;
 }
 
 .card p {

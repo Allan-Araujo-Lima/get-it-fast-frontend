@@ -8,6 +8,9 @@ import { useAuth } from '../../hooks/useAuth';
 import { Form, FormControl, FormField, FormItem, FormLabel } from "../../components/ui/form";
 import { Input } from "../../components/ui/input";
 import { Button } from "../../components/ui/button";
+import { Card, CardContent, CardTitle } from "../../components/ui/card";
+
+import "./style.css"
 
 const formSchema = z.object({
     email: z.string().email("Formato de e-mail inválido"),
@@ -44,38 +47,55 @@ export function ProfileForm() {
     }
 
     return (
-        <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-                <FormField
-                    control={form.control}
-                    name="email"
-                    render={({ field }) => (
-                        <FormItem>
-                            <FormLabel>
-                                E-mail
-                            </FormLabel>
-                            <FormControl>
-                                <Input {...field} type="email" />
-                            </FormControl>
-                        </FormItem>
-                    )}
-                />
-                <FormField
-                    control={form.control}
-                    name="password"
-                    render={({ field }) => (
-                        <FormItem>
-                            <FormLabel>
-                                Senha
-                            </FormLabel>
-                            <FormControl>
-                                <Input {...field} type="password" />
-                            </FormControl>
-                        </FormItem>
-                    )}
-                />
-                <Button type="submit">Submit</Button>
-            </form>
-        </Form>
+        <div>
+            <div className="backgrond-shapes">
+                <div class="circle"></div>
+                <div class="circle-small"></div>
+                <div class="rectangle"></div>
+            </div>
+            <div className="container">
+                <Card className="card">
+                    <CardTitle>Login</CardTitle>
+                    <CardContent>
+                        <Form {...form}>
+                            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+                                <FormField
+                                    control={form.control}
+                                    name="email"
+                                    render={({ field }) => (
+                                        <FormItem>
+                                            <FormLabel>
+                                                E-mail
+                                            </FormLabel>
+                                            <FormControl>
+                                                <Input {...field} type="email" />
+                                            </FormControl>
+                                        </FormItem>
+                                    )}
+                                />
+                                <FormField
+                                    control={form.control}
+                                    name="password"
+                                    render={({ field }) => (
+                                        <FormItem>
+                                            <FormLabel>
+                                                Senha
+                                            </FormLabel>
+                                            <FormControl>
+                                                <Input {...field} type="password" />
+                                            </FormControl>
+                                        </FormItem>
+                                    )}
+                                />
+                                <div className="login-button">
+                                    <Button type="submit">Submit</Button>
+                                    <p>Ainda não tem cadastrio? Registre-se agora.</p>
+                                </div>
+                            </form>
+                        </Form>
+                    </CardContent>
+                </Card>
+            </div>
+        </div>
     );
 }
