@@ -28,7 +28,7 @@ export const Home = () => {
             <div className='container'>
                 <div className='intrudution'>
                     <h1>Bem-vindo(a) GetItFast!</h1>
-                    <p>Somos uma empresa especializada em venda de alimentos com a data de validade próxima. Venha conhecer um pouco mais de nossa história!</p>
+                    <p>Somos uma empresa especializada em venda de produtos com a data de validade próxima. Venha conhecer um pouco mais de nossa história!</p>
                 </div>
                 <div className='information'>
                     <Card className='card'>
