@@ -3,7 +3,7 @@ body {
     margin: 0;
     padding: 0;
     overflow-x: hidden;
-    width: 100%;
+    width: auto;
     height: 100%;
     background: rgb(113, 119, 68);
     background: linear-gradient(45deg, rgba(113, 119, 68, 1) 0%, rgba(188, 189, 139, 1) 77%);

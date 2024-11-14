@@ -1,6 +1,7 @@
 import { Card, CardContent, CardTitle } from "@/components/ui/card"
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel"
 import { Separator } from "@/components/ui/separator"
+import GetAllUsers from "@/api/api"
 
 export const Home = () => {
 
@@ -52,6 +53,7 @@ export const Home = () => {
                     <CarouselNext />
                     <CarouselPrevious />
                 </Carousel>
+                <button onClick={GetAllUsers}>Aqqq</button>
             </section>
         </main>
     )
