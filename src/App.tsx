@@ -5,6 +5,7 @@ import { Home } from './pages/home'
 import { Login } from './pages/login'
 
 import "../src/globals/style.css"
+import { Registro } from './pages/registro'
 
 function App() {
 
@@ -22,6 +23,10 @@ function App() {
     {
       path: "/login",
       element: <Login />,
+    },
+    {
+      path: "/registro",
+      element: <Registro />
     }
   ])
 
