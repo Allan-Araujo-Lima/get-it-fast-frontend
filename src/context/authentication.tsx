@@ -1,5 +1,6 @@
 import { api } from "@/api/axios";
 import { createContext, ReactNode } from "react";
+import { redirect } from "react-router-dom";
 
 interface IRegister {
     first_name: string;
@@ -39,8 +40,10 @@ export const AuthenticationProvider = ({ children }: AuthenticationProps) => {
 
     const onLogin = async (dataLogin: ILogin) => {
         try {
-            await api.post('/auth/signin', dataLogin);
-            window.location.href = "/";
+            const response = await api.post('/auth/signin', dataLogin);
+            const token = response.data.access_token;
+            localStorage.setItem("accessToken", token);
+            redirect("/");
         } catch (error: any) {
             if (error.response) {
                 console.log(error.response.data);
