@@ -9,7 +9,6 @@ export const Registro = () => {
 
     const { onSignup } = useAuth()
 
-
     const formSchema = z.object({
         first_name: z.string().min(2, {
             message: "Nome deve ter no mínimo 2 letras."
@@ -37,10 +36,6 @@ export const Registro = () => {
 
     const handleSubmit = (values: z.infer<typeof formSchema>) => {
         onSignup(values);
-        if (values.password !== values.password_confirmation) {
-
-        }
-        console.log("valuesssssss", values);
     }
 
     return (
@@ -109,7 +104,6 @@ export const Registro = () => {
                                     <Input type="password" {...field} />
                                 </FormControl>
                                 <FormMessage />
-
                             </FormItem>
                         )}
                     />
