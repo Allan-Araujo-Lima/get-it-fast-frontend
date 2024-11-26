@@ -6,6 +6,7 @@ import { Login } from './pages/login'
 
 import "../src/globals/style.css"
 import { Registro } from './pages/registro'
+import { AuthenticationProvider } from './context/authentication'
 
 function App() {
 
@@ -31,7 +32,9 @@ function App() {
   ])
 
   return (
-    <RouterProvider router={pages} />
+    <AuthenticationProvider>
+      <RouterProvider router={pages} />
+    </AuthenticationProvider>
   )
 }
 

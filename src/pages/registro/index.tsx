@@ -1,14 +1,46 @@
-import { Form, FormControl, FormField, FormItem, FormLabel } from "@/components/ui/form"
-import { Input } from "@/components/ui/input"
-import { useForm } from "react-hook-form"
-import { useRegister } from "../../../hooks/useRegister"
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { useForm } from "react-hook-form";
+import { useAuth } from "@/hooks/useAuth";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 export const Registro = () => {
 
-    const form = useForm()
+    const { onSignup } = useAuth()
 
-    const handleSubmit = async (values: any) => {
-        await useRegister().registerFn(values)
+
+    const formSchema = z.object({
+        first_name: z.string().min(2, {
+            message: "Nome deve ter no mínimo 2 letras."
+        }),
+        last_name: z.string().min(2, {
+            message: "Nome deve ter no mínimo 2 letras."
+        }),
+        email: z.string().email("Email inválido"),
+        password: z.string().min(8, {
+            message: "A senha deve ter no mínimo 8 caracteres."
+        }),
+        password_confirmation: z.string().min(8, {
+            message: "A senha deve ter no mínimo 8 caracteres."
+        }),
+    })
+        .passthrough()
+        .refine(({ password, password_confirmation }) => password === password_confirmation, {
+            message: 'As senhas devem ser iguais.',
+            path: ['password_confirmation'],
+        })
+
+    const form = useForm<z.infer<typeof formSchema>>({
+        resolver: zodResolver(formSchema),
+    })
+
+    const handleSubmit = (values: z.infer<typeof formSchema>) => {
+        onSignup(values);
+        if (values.password !== values.password_confirmation) {
+
+        }
+        console.log("valuesssssss", values);
     }
 
     return (
@@ -24,6 +56,7 @@ export const Registro = () => {
                                 <FormControl>
                                     <Input {...field} />
                                 </FormControl>
+                                <FormMessage />
                             </FormItem>
                         )}
                     />
@@ -36,6 +69,7 @@ export const Registro = () => {
                                 <FormControl>
                                     <Input {...field} />
                                 </FormControl>
+                                <FormMessage />
                             </FormItem>
                         )}
                     />
@@ -48,6 +82,7 @@ export const Registro = () => {
                                 <FormControl>
                                     <Input type="email" {...field} />
                                 </FormControl>
+                                <FormMessage />
                             </FormItem>
                         )}
                     />
@@ -60,6 +95,7 @@ export const Registro = () => {
                                 <FormControl>
                                     <Input type="password" {...field} />
                                 </FormControl>
+                                <FormMessage />
                             </FormItem>
                         )}
                     />
@@ -72,6 +108,8 @@ export const Registro = () => {
                                 <FormControl>
                                     <Input type="password" {...field} />
                                 </FormControl>
+                                <FormMessage />
+
                             </FormItem>
                         )}
                     />
