@@ -1,6 +1,5 @@
 import { api } from "@/api/axios";
-import { createContext, ReactNode } from "react";
-import { redirect } from "react-router-dom";
+import { createContext, ReactNode, useEffect, useState } from "react";
 
 interface IRegister {
     first_name: string;
@@ -15,6 +14,7 @@ interface ILogin {
 }
 
 interface AuthenticationContext {
+    isAuthenticated: boolean;
     onSignup: (value: IRegister) => void;
     onLogin: (value: ILogin) => void;
 }
@@ -26,6 +26,13 @@ interface AuthenticationProps {
 export const AuthenticationContext = createContext<AuthenticationContext>({} as AuthenticationContext)
 
 export const AuthenticationProvider = ({ children }: AuthenticationProps) => {
+
+    const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+    useEffect(() => {
+        const token = localStorage.getItem("accessToken");
+        setIsAuthenticated(!!token);
+    }, []);
 
     const onSignup = async (dataRegister: IRegister) => {
         try {
@@ -43,7 +50,8 @@ export const AuthenticationProvider = ({ children }: AuthenticationProps) => {
             const response = await api.post('/auth/signin', dataLogin);
             const token = response.data.access_token;
             localStorage.setItem("accessToken", token);
-            redirect("/");
+            setIsAuthenticated(true);
+            window.location.href = "/";
         } catch (error: any) {
             if (error.response) {
                 console.log(error.response.data);
@@ -52,6 +60,6 @@ export const AuthenticationProvider = ({ children }: AuthenticationProps) => {
     }
 
     return (
-        <AuthenticationContext.Provider value={{ onSignup, onLogin }}>{children}</AuthenticationContext.Provider>
+        <AuthenticationContext.Provider value={{ isAuthenticated, onSignup, onLogin }}>{children}</AuthenticationContext.Provider>
     )
 }

@@ -7,6 +7,7 @@ import { Login } from './pages/login'
 import "../src/globals/style.css"
 import { Registro } from './pages/registro'
 import { AuthenticationProvider } from './context/authentication'
+import PrivateRoute from './components/wrapper'
 import { Produto } from './pages/produto'
 
 function App() {
@@ -32,7 +33,10 @@ function App() {
     },
     {
       path: "/produto/novo",
-      element: <Produto />
+      element:
+        <PrivateRoute>
+          <Produto />
+        </PrivateRoute>
     }
   ])
 

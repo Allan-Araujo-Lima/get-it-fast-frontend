@@ -19,7 +19,6 @@ export const Login = () => {
 
     const handleSubmit = (values: z.infer<typeof formSchema>) => {
         onLogin(values);
-        console.log(values);
     };
 
     return (
@@ -36,19 +35,21 @@ export const Login = () => {
                     >
                         <h1 className="text-2xl font-bold text-gray-800 text-center">Login</h1>
                         <FormField
+                            defaultValue=""
                             control={form.control}
                             name="email"
                             render={({ field }) => (
                                 <FormItem>
                                     <FormLabel className="text-gray-700">E-mail</FormLabel>
                                     <FormControl>
-                                        <Input {...field} className="border-gray-300 focus:ring-blue-500 focus:border-blue-500" />
+                                        <Input {...field} placeholder="exemplo@gmail.com" className="border-gray-300 focus:ring-blue-500 focus:border-blue-500" />
                                     </FormControl>
                                     <FormMessage className="text-red-500 text-sm" />
                                 </FormItem>
                             )}
                         />
                         <FormField
+                            defaultValue=""
                             control={form.control}
                             name="password"
                             render={({ field }) => (
@@ -66,7 +67,7 @@ export const Login = () => {
                             )}
                         />
                         <button
-                            className="w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-blue-300"
+                            className="w-full bg-[#766153] hover:bg-[#5e4b3f] text-[#eff1ed] mt-3 py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-blue-300"
                             type="submit"
                         >
                             Login

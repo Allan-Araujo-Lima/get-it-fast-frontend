@@ -1,8 +1,11 @@
 import { Card, CardContent, CardTitle } from "@/components/ui/card"
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel"
 import { Separator } from "@/components/ui/separator"
+import { useToast } from "@/hooks/use-toast"
 
 export const Home = () => {
+
+    const { toast } = useToast();
 
     const cardInfo = [
         {
@@ -52,7 +55,14 @@ export const Home = () => {
                     <CarouselNext />
                     <CarouselPrevious />
                 </Carousel>
-                <button>Aqqq</button>
+                <button onClick={() => {
+                    toast({
+                        title: "teste",
+                        description: "isso é um teste"
+                    })
+                }}>
+                    Aqqq
+                </button>
             </section>
         </main>
     )
