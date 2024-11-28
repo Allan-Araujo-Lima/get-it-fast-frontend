@@ -15,9 +15,11 @@ import {
 } from "@/components/ui/popover"
 import { z } from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
+import { AmountInput, MonetaryInput } from "@/inputFormater"
+import { NewProduct } from "@/products"
 
 export const Produto = () => {
-    const [date, setDate] = useState<Date>()
+    const [date, setDate] = useState<Date>();
 
     const formSchema = z
         .object({
@@ -37,7 +39,8 @@ export const Produto = () => {
     })
 
     const handleSubmit = (values: z.infer<typeof formSchema>) => {
-        console.log("values", values)
+        console.log(values)
+        NewProduct(values);
     }
 
     return (
@@ -91,7 +94,10 @@ export const Produto = () => {
                                 <FormItem>
                                     <FormLabel className="text-gray-700">Preço da unidade</FormLabel>
                                     <FormControl>
-                                        <Input {...field} placeholder="R$ 50,00" className="border-gray-300 focus:ring-blue-500 focus:border-blue-500" />
+                                        <MonetaryInput {...field} className="border-gray-300 focus:ring-blue-500 focus:border-blue-500"
+                                            onChange={(value: number) => field.onChange(value)}
+                                            placeholder="R$ 50,00"
+                                        />
                                     </FormControl>
                                     <FormMessage className="text-red-500 text-sm" />
                                 </FormItem>
@@ -105,7 +111,10 @@ export const Produto = () => {
                                 <FormItem>
                                     <FormLabel className="text-gray-700">Quantidade disponível</FormLabel>
                                     <FormControl>
-                                        <Input {...field} placeholder="5" className="border-gray-300 focus:ring-blue-500 focus:border-blue-500" />
+                                        <AmountInput {...field} className="border-gray-300 focus:ring-blue-500 focus:border-blue-500"
+                                            onChange={(value: number) => field.onChange(value)}
+                                            placeholder="5"
+                                        />
                                     </FormControl>
                                     <FormMessage className="text-red-500 text-sm" />
                                 </FormItem>
@@ -138,6 +147,7 @@ export const Produto = () => {
                                                     selected={date}
                                                     onSelect={setDate}
                                                     initialFocus
+                                                    onDayClick={(value) => field.onChange(value)}
                                                 />
                                             </PopoverContent>
                                         </Popover>
