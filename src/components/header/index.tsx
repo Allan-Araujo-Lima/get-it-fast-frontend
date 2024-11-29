@@ -4,29 +4,24 @@ import { useState } from 'react';
 
 import { Button } from '../ui/button';
 import { Popover, PopoverContent, PopoverTrigger } from '../ui/popover';
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from '../ui/dialog';
+import { Dialog, DialogContent } from '../ui/dialog';
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@/components/ui/accordion";
 
 import {
     ChevronDown,
     Menu,
     X,
-    PlayCircle,
-    Phone,
     ChartPie,
+    Zap,
+    Edit,
+    Trash
 } from 'lucide-react';
 
 const products = [
-    { name: 'Analytics', description: 'Get a better understanding of your traffic', href: '#', icon: ChartPie },
-    { name: 'Engagement', description: 'Speak directly to your customers', href: '#', icon: ChartPie },
-    { name: 'Security', description: 'Your customers’ data will be safe and secure', href: '#', icon: ChartPie },
-    { name: 'Integrations', description: 'Connect with third-party tools', href: '#', icon: ChartPie },
-    { name: 'Automations', description: 'Build strategic funnels that will convert', href: '#', icon: ChartPie },
-];
-
-const callsToAction = [
-    { name: 'Watch demo', href: '#', icon: PlayCircle },
-    { name: 'Contact sales', href: '#', icon: Phone },
+    { name: 'Produtos', description: 'Encontre o produto ideal para você', href: '/produto', icon: ChartPie },
+    { name: 'Novo produto', description: 'Cadastre seus produtos e encontre clientes rapidamente', href: '/produto/novo', icon: Zap },
+    { name: 'Editar produto', description: 'Edite as informações dos seus produtos já cadastrados', href: '#', icon: Edit },
+    { name: 'Excluir produto', description: 'Exclua produtos ', href: '#', icon: Trash },
 ];
 
 export const Header = () => {
@@ -37,7 +32,7 @@ export const Header = () => {
             <nav className="container mx-auto flex items-center justify-between p-4">
                 <div className="flex items-center">
                     <a href="#" className="text-xl font-bold">
-                        <span className="sr-only">Your Company</span>
+                        <span className="sr-only">Logo da Empresa</span>
                         <img
                             alt="Logo"
                             src="/assets/Logomarca.svg"
@@ -49,7 +44,7 @@ export const Header = () => {
                     <Popover>
                         <PopoverTrigger asChild>
                             <Button variant="ghost" className="flex items-center gap-2">
-                                Product
+                                Produto
                                 <ChevronDown className="h-4 w-4" />
                             </Button>
                         </PopoverTrigger>
@@ -66,18 +61,6 @@ export const Header = () => {
                                             <p className="text-sm font-medium">{item.name}</p>
                                             <p className="text-xs text-gray-500">{item.description}</p>
                                         </div>
-                                    </a>
-                                ))}
-                            </div>
-                            <div className="border-t mt-4 pt-4 grid gap-2">
-                                {callsToAction.map((item) => (
-                                    <a
-                                        key={item.name}
-                                        href={item.href}
-                                        className="flex items-center gap-2 text-sm font-medium hover:underline"
-                                    >
-                                        <item.icon className="h-4 w-4 text-gray-500" />
-                                        {item.name}
                                     </a>
                                 ))}
                             </div>
@@ -107,59 +90,54 @@ export const Header = () => {
             </nav>
 
             <Dialog open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
-                <DialogContent className="fixed inset-0 bg-white p-4">
-                    <DialogHeader>
-                        <DialogTitle>
-                            <div className="flex justify-between items-center">
-                                <a href="#" className="text-xl font-bold">
-                                    <img
-                                        alt="Logo"
-                                        src="/assets/Logomarca.svg"
-                                        className="h-8 w-auto"
-                                    />
-                                </a>
-                                <button
-                                    className="p-2"
-                                    onClick={() => setMobileMenuOpen(false)}
-                                >
-                                    <X className="h-6 w-6" />
-                                </button>
-                            </div>
-                        </DialogTitle>
-                    </DialogHeader>
+                <DialogContent className="fixed mt-24 inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
+                    <div className="flex justify-between items-center">
+                        <a href="#" className="-m-1.5 p-1.5">
+                            <img
+                                alt="Logo"
+                                src="/assets/Logomarca.svg"
+                                className="h-8 w-auto"
+                            />
+                        </a>
+                        <button
+                            className="-m-2.5 rounded-md p-2.5 text-gray-700"
+                            onClick={() => setMobileMenuOpen(false)}
+                        >
+                            <X className="h-6 w-6" />
+                        </button>
+                    </div>
+
                     <div className="mt-6 space-y-4">
                         <Accordion type="single" collapsible>
                             <AccordionItem value="product">
-                                <AccordionTrigger>Product</AccordionTrigger>
-                                <AccordionContent>
-                                    <div className="space-y-2 pl-4">
-                                        {[...products, ...callsToAction].map((item) => (
-                                            <a
-                                                key={item.name}
-                                                href={item.href}
-                                                className="block text-sm font-medium hover:underline"
-                                            >
-                                                {item.name}
-                                            </a>
-                                        ))}
-                                    </div>
+                                <AccordionTrigger>Produto</AccordionTrigger>
+                                <AccordionContent className="space-y-2 pl-4">
+                                    {products.map((item) => (
+                                        <a
+                                            key={item.name}
+                                            href={item.href}
+                                            className="block text-sm font-medium hover:underline"
+                                            onClick={() => setMobileMenuOpen(false)} // Fecha o menu após clicar
+                                        >
+                                            {item.name}
+                                        </a>
+                                    ))}
                                 </AccordionContent>
                             </AccordionItem>
                         </Accordion>
-                        <a href="#" className="block text-sm font-medium hover:underline">
+                        <a href="#" className="block text-sm font-medium hover:underline" onClick={() => setMobileMenuOpen(false)}>
                             Features
                         </a>
-                        <a href="#" className="block text-sm font-medium hover:underline">
+                        <a href="#" className="block text-sm font-medium hover:underline" onClick={() => setMobileMenuOpen(false)}>
                             Marketplace
                         </a>
-                        <a href="#" className="block text-sm font-medium hover:underline">
+                        <a href="#" className="block text-sm font-medium hover:underline" onClick={() => setMobileMenuOpen(false)}>
                             Company
                         </a>
-                        <a href="#" className="block text-sm font-medium hover:underline">
+                        <a href="#" className="block text-sm font-medium hover:underline" onClick={() => setMobileMenuOpen(false)}>
                             Log in
                         </a>
                     </div>
-
                 </DialogContent>
             </Dialog>
         </header>
