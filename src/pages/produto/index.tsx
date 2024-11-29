@@ -16,9 +16,14 @@ import {
 import { z } from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { AmountInput, MonetaryInput } from "@/inputFormater"
-import { NewProduct } from "@/products"
+import { NewProduct } from "@/productRequests/products"
+import { useToast } from "@/hooks/use-toast"
+import { redirect } from "react-router-dom"
 
 export const Produto = () => {
+
+    const { toast } = useToast();
+
     const [date, setDate] = useState<Date>();
 
     const formSchema = z
@@ -38,10 +43,30 @@ export const Produto = () => {
         resolver: zodResolver(formSchema)
     })
 
-    const handleSubmit = (values: z.infer<typeof formSchema>) => {
-        console.log(values)
-        NewProduct(values);
-    }
+    const handleSubmit = async (values: z.infer<typeof formSchema>) => {
+        try {
+            const response = await NewProduct(values);
+
+            alert("Produto cadastrado com sucesso");
+
+            // toast({
+            //     title: "Sucesso!",
+            //     description: "Produto cadastrado com sucesso.",
+            //     variant: "default",
+            // });
+
+            form.reset();
+            window.location.href = "/";
+        } catch (error: any) {
+            console.error("Erro ao cadastrar o produto:", error);
+
+            toast({
+                title: "Erro ao cadastrar produto",
+                description: error.response?.data?.message || "Ocorreu um erro inesperado.",
+                variant: "destructive",
+            });
+        }
+    };
 
     return (
         <main className="flex h-screen bg-gray-100 md:grid grid-cols-3">
