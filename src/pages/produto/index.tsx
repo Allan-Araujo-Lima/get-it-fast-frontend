@@ -1,4 +1,3 @@
-import { useState } from "react"
 import { useForm } from "react-hook-form"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
@@ -18,13 +17,12 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { AmountInput, MonetaryInput } from "@/inputFormater"
 import { NewProduct } from "@/productRequests/products"
 import { useToast } from "@/hooks/use-toast"
-import { redirect } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 
 export const Produto = () => {
 
     const { toast } = useToast();
-
-    const [date, setDate] = useState<Date>();
+    const navigate = useNavigate();
 
     const formSchema = z
         .object({
@@ -45,24 +43,21 @@ export const Produto = () => {
 
     const handleSubmit = async (values: z.infer<typeof formSchema>) => {
         try {
-            const response = await NewProduct(values);
+            await NewProduct(values);
 
-            alert("Produto cadastrado com sucesso");
+            toast({
+                title: "Sucesso!",
+                description: "Produto cadastrado com sucesso.",
+                variant: "default",
+            });
 
-            // toast({
-            //     title: "Sucesso!",
-            //     description: "Produto cadastrado com sucesso.",
-            //     variant: "default",
-            // });
-
-            form.reset();
-            window.location.href = "/";
+            navigate("/")
         } catch (error: any) {
             console.error("Erro ao cadastrar o produto:", error);
 
             toast({
                 title: "Erro ao cadastrar produto",
-                description: error.response?.data?.message || "Ocorreu um erro inesperado.",
+                description: error.message || "Ocorreu um erro inesperado.",
                 variant: "destructive",
             });
         }
@@ -153,26 +148,25 @@ export const Produto = () => {
                                 <FormItem>
                                     <FormLabel className="text-gray-700">Data de vencimento</FormLabel>
                                     <FormControl>
-                                        <Popover {...field}>
+                                        <Popover>
                                             <PopoverTrigger asChild>
                                                 <Button
                                                     variant="outline"
                                                     className={cn(
                                                         "w-full py-3 px-4 text-left font-normal border-gray-300 focus:ring-blue-500 focus:border-blue-500",
-                                                        !date && "text-muted-foreground"
+                                                        !field.value && "text-muted-foreground"
                                                     )}
                                                 >
                                                     <CalendarIcon className="mr-2" />
-                                                    {date ? format(date, "dd/MM/yyyy") : <span>Escolher data</span>}
+                                                    {field.value ? format(new Date(field.value), "dd/MM/yyyy") : <span>Escolher data</span>}
                                                 </Button>
                                             </PopoverTrigger>
                                             <PopoverContent className="w-auto p-0" align="start">
                                                 <Calendar
                                                     mode="single"
-                                                    selected={date}
-                                                    onSelect={setDate}
+                                                    selected={field.value}
+                                                    onSelect={field.onChange}
                                                     initialFocus
-                                                    onDayClick={(value) => field.onChange(value)}
                                                 />
                                             </PopoverContent>
                                         </Popover>
@@ -181,6 +175,7 @@ export const Produto = () => {
                                 </FormItem>
                             )}
                         />
+
 
                         <button
                             className="w-full bg-[#766153] hover:bg-[#5e4b3f] text-[#eff1ed] mt-3 py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-blue-300"
@@ -191,6 +186,6 @@ export const Produto = () => {
                     </form>
                 </Form>
             </div>
-        </main>
+        </main >
     )
 }

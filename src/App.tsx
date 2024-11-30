@@ -9,6 +9,7 @@ import { Registro } from './pages/registro'
 import { AuthenticationProvider } from './context/authentication'
 import PrivateRoute from './components/wrapper'
 import { Produto } from './pages/produto'
+import { Toaster } from './components/ui/toaster'
 
 function App() {
 
@@ -43,6 +44,7 @@ function App() {
   return (
     <AuthenticationProvider>
       <RouterProvider router={pages} />
+      <Toaster />
     </AuthenticationProvider>
   )
 }
