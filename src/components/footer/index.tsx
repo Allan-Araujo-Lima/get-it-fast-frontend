@@ -1,3 +1,5 @@
+import Logo from "../../assets/Logo.svg"
+
 export const Footer = () => {
     return (
         <footer className="bg-[#373d20] relative mt-16 bg-deep-purple-accent-400">
@@ -20,87 +22,64 @@ export const Footer = () => {
                             title="Company"
                             className="inline-flex items-center"
                         >
-                            <svg
-                                className="w-8 text-teal-accent-400"
-                                viewBox="0 0 24 24"
-                                strokeLinejoin="round"
-                                strokeWidth="2"
-                                strokeLinecap="round"
-                                strokeMiterlimit="10"
-                                stroke="currentColor"
-                                fill="none"
-                            >
-                                <rect x="3" y="1" width="7" height="12" />
-                                <rect x="3" y="17" width="7" height="6" />
-                                <rect x="14" y="1" width="7" height="6" />
-                                <rect x="14" y="11" width="7" height="12" />
-                            </svg>
+                            <img
+                                alt="Logo"
+                                src={Logo}
+                                className="h-24 w-auto"
+                            />
                             <span className="ml-2 text-xl font-bold tracking-wide text-gray-100 uppercase">
-                                Company
+                                GetItFast
                             </span>
                         </a>
                         <div className="mt-4 lg:max-w-sm">
                             <p className="text-sm text-deep-purple-50">
-                                Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-                                accusantium doloremque laudantium, totam rem aperiam.
+                                Lutamos constantemente contra o desperdício de alimentos e produtos,
+                                para isso, contamos com os nossos clientes!
                             </p>
                             <p className="mt-4 text-sm text-deep-purple-50">
-                                Eaque ipsa quae ab illo inventore veritatis et quasi architecto
-                                beatae vitae dicta sunt explicabo.
+                                GetItFast, agilidade e responsabildiade.
                             </p>
                         </div>
                     </div>
                     <div className="grid grid-cols-2 gap-5 row-gap-8 lg:col-span-4 md:grid-cols-4">
                         <div>
                             <p className="font-semibold tracking-wide text-teal-accent-400">
-                                Category
+                                Mercado
                             </p>
                             <ul className="mt-2 space-y-2">
                                 <li>
-                                    <a
-                                        href="/"
-                                        className="transition-colors duration-300 text-deep-purple-50 hover:text-teal-accent-400"
+                                    <a href="/" className="transition-colors duration-300 text-deep-purple-50 hover:text-teal-accent-400"
                                     >
-                                        News
+                                        Home
                                     </a>
                                 </li>
                                 <li>
-                                    <a
-                                        href="/"
-                                        className="transition-colors duration-300 text-deep-purple-50 hover:text-teal-accent-400"
+                                    <a href="/produto" className="transition-colors duration-300 text-deep-purple-50 hover:text-teal-accent-400"
                                     >
-                                        World
-                                    </a>
-                                </li>
-                                <li>
-                                    <a
-                                        href="/"
-                                        className="transition-colors duration-300 text-deep-purple-50 hover:text-teal-accent-400"
-                                    >
-                                        Games
-                                    </a>
-                                </li>
-                                <li>
-                                    <a
-                                        href="/"
-                                        className="transition-colors duration-300 text-deep-purple-50 hover:text-teal-accent-400"
-                                    >
-                                        References
+                                        Mercado
                                     </a>
                                 </li>
                             </ul>
                         </div>
                         <div>
                             <p className="font-semibold tracking-wide text-teal-accent-400">
-                                Cherry
+                                Produtos
                             </p>
                             <ul className="mt-2 space-y-2">
                                 <li>
                                     <a
-                                        href="/"
+                                        href="/produtos"
                                         className="transition-colors duration-300 text-deep-purple-50 hover:text-teal-accent-400"
                                     >
-                                        Web
+                                        Meus Produtos
+                                    </a>
+                                </li>
+                                <li>
+                                    <a
+                                        href="/produto/novo"
+                                        className="transition-colors duration-300 text-deep-purple-50 hover:text-teal-accent-400"
+                                    >
+                                        Criar Produto
                                     </a>
                                 </li>
                                 <li>
@@ -108,117 +87,51 @@ export const Footer = () => {
                                         href="/"
                                         className="transition-colors duration-300 text-deep-purple-50 hover:text-teal-accent-400"
                                     >
-                                        eCommerce
-                                    </a>
-                                </li>
-                                <li>
-                                    <a
-                                        href="/"
-                                        className="transition-colors duration-300 text-deep-purple-50 hover:text-teal-accent-400"
-                                    >
-                                        Business
-                                    </a>
-                                </li>
-                                <li>
-                                    <a
-                                        href="/"
-                                        className="transition-colors duration-300 text-deep-purple-50 hover:text-teal-accent-400"
-                                    >
-                                        Entertainment
-                                    </a>
-                                </li>
-                                <li>
-                                    <a
-                                        href="/"
-                                        className="transition-colors duration-300 text-deep-purple-50 hover:text-teal-accent-400"
-                                    >
-                                        Portfolio
+                                        Excluir Produto
                                     </a>
                                 </li>
                             </ul>
                         </div>
                         <div>
                             <p className="font-semibold tracking-wide text-teal-accent-400">
-                                Apples
+                                Criador
                             </p>
                             <ul className="mt-2 space-y-2">
                                 <li>
                                     <a
-                                        href="/"
+                                        href="https://www.linkedin.com/in/allan-araujo-lima/"
+                                        target="_blank"
                                         className="transition-colors duration-300 text-deep-purple-50 hover:text-teal-accent-400"
                                     >
-                                        Media
+                                        LinkedIn
                                     </a>
                                 </li>
                                 <li>
                                     <a
-                                        href="/"
+                                        href="https://github.com/Allan-Araujo-Lima"
+                                        target="_blank"
                                         className="transition-colors duration-300 text-deep-purple-50 hover:text-teal-accent-400"
                                     >
-                                        Brochure
+                                        Github
                                     </a>
                                 </li>
                                 <li>
                                     <a
-                                        href="/"
+                                        href="https://www.instagram.com/imnot.allan/"
+                                        target="_blank"
                                         className="transition-colors duration-300 text-deep-purple-50 hover:text-teal-accent-400"
                                     >
-                                        Nonprofit
+                                        Instagram
                                     </a>
                                 </li>
                                 <li>
                                     <a
-                                        href="/"
+                                        href="mailto: allanvoide@gmail.com?subject=Hello Allan"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
                                         className="transition-colors duration-300 text-deep-purple-50 hover:text-teal-accent-400"
                                     >
-                                        Educational
-                                    </a>
-                                </li>
-                                <li>
-                                    <a
-                                        href="/"
-                                        className="transition-colors duration-300 text-deep-purple-50 hover:text-teal-accent-400"
-                                    >
-                                        Projects
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div>
-                            <p className="font-semibold tracking-wide text-teal-accent-400">
-                                Business
-                            </p>
-                            <ul className="mt-2 space-y-2">
-                                <li>
-                                    <a
-                                        href="/"
-                                        className="transition-colors duration-300 text-deep-purple-50 hover:text-teal-accent-400"
-                                    >
-                                        Infopreneur
-                                    </a>
-                                </li>
-                                <li>
-                                    <a
-                                        href="/"
-                                        className="transition-colors duration-300 text-deep-purple-50 hover:text-teal-accent-400"
-                                    >
-                                        Personal
-                                    </a>
-                                </li>
-                                <li>
-                                    <a
-                                        href="/"
-                                        className="transition-colors duration-300 text-deep-purple-50 hover:text-teal-accent-400"
-                                    >
-                                        Wiki
-                                    </a>
-                                </li>
-                                <li>
-                                    <a
-                                        href="/"
-                                        className="transition-colors duration-300 text-deep-purple-50 hover:text-teal-accent-400"
-                                    >
-                                        Forum
+                                        E-mail
                                     </a>
                                 </li>
                             </ul>
@@ -227,7 +140,7 @@ export const Footer = () => {
                 </div>
                 <div className="flex flex-col justify-between pt-5 pb-10 border-t border-deep-purple-accent-200 sm:flex-row">
                     <p className="text-sm text-gray-100">
-                        © Copyright 2020 Lorem Inc. All rights reserved.
+                        Feito por @Allan
                     </p>
                     <div className="flex items-center mt-4 space-x-4 sm:mt-0">
                         <a

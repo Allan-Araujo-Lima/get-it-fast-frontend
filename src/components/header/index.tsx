@@ -4,7 +4,7 @@ import { useState } from 'react';
 
 import { Button } from '../ui/button';
 import { Popover, PopoverContent, PopoverTrigger } from '../ui/popover';
-import { Dialog, DialogContent } from '../ui/dialog';
+import { Dialog, DialogContent, DialogDescription, DialogTitle } from '../ui/dialog';
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@/components/ui/accordion";
 
 import {
@@ -16,6 +16,8 @@ import {
     Edit,
     Trash
 } from 'lucide-react';
+
+import Logo from "../../assets/Logo.svg"
 
 const products = [
     { name: 'Produtos', description: 'Encontre o produto ideal para você', href: '/produto', icon: ChartPie },
@@ -31,16 +33,19 @@ export const Header = () => {
         <header className="bg-white border-b">
             <nav className="container mx-auto flex items-center justify-between p-4">
                 <div className="flex items-center">
-                    <a href="#" className="text-xl font-bold">
+                    <a href="/" className="text-xl font-bold">
                         <span className="sr-only">Logo da Empresa</span>
                         <img
                             alt="Logo"
-                            src="/assets/Logomarca.svg"
-                            className="h-8 w-auto"
+                            src={Logo}
+                            className="h-24 w-auto"
                         />
                     </a>
                 </div>
                 <div className="hidden lg:flex items-center gap-8">
+                    <a href="/produto" className="text-sm font-medium hover:underline">
+                        Mercado
+                    </a>
                     <Popover>
                         <PopoverTrigger asChild>
                             <Button variant="ghost" className="flex items-center gap-2">
@@ -67,19 +72,20 @@ export const Header = () => {
                         </PopoverContent>
                     </Popover>
                     <a href="#" className="text-sm font-medium hover:underline">
-                        Features
-                    </a>
-                    <a href="#" className="text-sm font-medium hover:underline">
-                        Marketplace
-                    </a>
-                    <a href="#" className="text-sm font-medium hover:underline">
-                        Company
+                        Sobre nós
                     </a>
                 </div>
-                <div className="hidden lg:flex">
-                    <a href="#" className="text-sm font-medium hover:underline">
-                        Log in →
-                    </a>
+                <div className='lg:flex items-center gap-8'>
+                    <div className="hidden lg:flex">
+                        <a href="/login" className="text-sm font-medium hover:underline">
+                            Entrar →
+                        </a>
+                    </div>
+                    <div className="hidden lg:flex">
+                        <a href="/registro" className="text-sm font-medium hover:underline">
+                            Registrar-se →
+                        </a>
+                    </div>
                 </div>
                 <button
                     className="lg:hidden p-2"
@@ -90,13 +96,15 @@ export const Header = () => {
             </nav>
 
             <Dialog open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
-                <DialogContent className="fixed mt-24 inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
+                <DialogTitle hidden />
+                <DialogContent className="fixed mt-24 inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10"
+                    aria-label="Menu de navegação">
                     <div className="flex justify-between items-center">
-                        <a href="#" className="-m-1.5 p-1.5">
+                        <a href="/" className="-m-1.5 p-1.5">
                             <img
                                 alt="Logo"
-                                src="/assets/Logomarca.svg"
-                                className="h-8 w-auto"
+                                src={Logo}
+                                className="h-24 w-auto"
                             />
                         </a>
                         <button
@@ -117,7 +125,7 @@ export const Header = () => {
                                             key={item.name}
                                             href={item.href}
                                             className="block text-sm font-medium hover:underline"
-                                            onClick={() => setMobileMenuOpen(false)} // Fecha o menu após clicar
+                                            onClick={() => setMobileMenuOpen(false)}
                                         >
                                             {item.name}
                                         </a>
@@ -128,7 +136,7 @@ export const Header = () => {
                         <a href="#" className="block text-sm font-medium hover:underline" onClick={() => setMobileMenuOpen(false)}>
                             Features
                         </a>
-                        <a href="#" className="block text-sm font-medium hover:underline" onClick={() => setMobileMenuOpen(false)}>
+                        <a href="/produto" className="block text-sm font-medium hover:underline" onClick={() => setMobileMenuOpen(false)}>
                             Marketplace
                         </a>
                         <a href="#" className="block text-sm font-medium hover:underline" onClick={() => setMobileMenuOpen(false)}>
@@ -139,6 +147,7 @@ export const Header = () => {
                         </a>
                     </div>
                 </DialogContent>
+                <DialogDescription hidden />
             </Dialog>
         </header>
     );
