@@ -27,21 +27,20 @@ export const AuthenticationContext = createContext<AuthenticationContext>({} as 
 
 export const AuthenticationProvider = ({ children }: AuthenticationProps) => {
 
-    const [isAuthenticated, setIsAuthenticated] = useState(false);
+    const [isAuthenticated, setIsAuthenticated] = useState(!!localStorage.getItem("accessToken"));
 
     useEffect(() => {
-        const token = localStorage.getItem("accessToken");
-        setIsAuthenticated(!!token);
+        setIsAuthenticated(!!localStorage.getItem("accessToken"));
     }, []);
 
     const onSignup = async (dataRegister: IRegister) => {
         try {
             await api.post('/users/signup', dataRegister);
-            window.location.href = "/login"
         } catch (error: any) {
             if (error.response) {
-                console.log(error.response.data);
+                throw { message: error.response.data };
             }
+            throw { message: error.message };
         }
     }
 
@@ -51,11 +50,11 @@ export const AuthenticationProvider = ({ children }: AuthenticationProps) => {
             const token = response.data.access_token;
             localStorage.setItem("accessToken", token);
             setIsAuthenticated(true);
-            window.location.href = "/";
         } catch (error: any) {
             if (error.response) {
-                console.log(error.response.data);
+                throw { message: error.response.data };
             }
+            throw { message: error.message };
         }
     }
 

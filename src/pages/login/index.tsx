@@ -1,12 +1,19 @@
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { useAuth } from "@/hooks/useAuth";
+import useAuth from "@/hooks/useAuth";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
+import pizza from "../../assets/pizza.svg";
+import { useNavigate } from "react-router-dom";
+import { useToast } from "@/hooks/use-toast";
+
 export const Login = () => {
     const { onLogin } = useAuth();
+    const { toast } = useToast();
+    const navigate = useNavigate();
+
 
     const formSchema = z.object({
         email: z.string().email("Email inválido."),
@@ -17,17 +24,33 @@ export const Login = () => {
         resolver: zodResolver(formSchema)
     });
 
-    const handleSubmit = (values: z.infer<typeof formSchema>) => {
-        onLogin(values);
+    const handleSubmit = async (values: z.infer<typeof formSchema>) => {
+        try {
+            await onLogin(values);
+
+            toast({
+                title: "Sucesso!",
+                description: "Login efetuado com sucesso!",
+                variant: "default",
+            });
+            navigate("/");
+        } catch (error: any) {
+            toast({
+                title: "Erro!",
+                description: error.message || "Produto cadastrado com sucesso.",
+                variant: "destructive",
+            });
+        }
     };
 
     return (
-        <main className="flex h-screen bg-gray-100 md:grid grid-cols-3">
+        <main className="flex h-full bg-gray-100 md:grid grid-cols-3 h-max-screen overflow-hidden">
             <div className="hidden text-center text-[#eff1ed] pt-12 md:block bg-[#373d20] col-span-1">
                 <h2 className="text-6xl m-3">GetItFast</h2>
                 <p>Entre e descubra novas possibilidades.</p>
+                <img className="h-3/5" src={pizza}></img>
             </div>
-            <div className="flex justify-center items-center col-span-2">
+            <div className="flex justify-center h-screen w-full items-center col-span-2">
                 <Form {...form}>
                     <form
                         className="flex flex-col w-full max-w-md bg-white shadow-md rounded-lg p-6 space-y-4"

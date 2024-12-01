@@ -7,9 +7,9 @@ import { Login } from './pages/login'
 import "../src/globals/style.css"
 import { Registro } from './pages/registro'
 import { AuthenticationProvider } from './context/authentication'
-import PrivateRoute from './components/wrapper'
-import { Produto } from './pages/produto'
+import { Produto } from './pages/criarProduto'
 import { Toaster } from './components/ui/toaster'
+import PrivateRoute from './components/wrapper'
 
 function App() {
 

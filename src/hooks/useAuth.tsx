@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { AuthenticationContext } from "@/context/authentication";
 
-export const useAuth = () => {
+const useAuth = () => {
     const context = useContext(AuthenticationContext);
 
     if (context === undefined)
@@ -9,3 +9,5 @@ export const useAuth = () => {
 
     return context;
 };
+
+export default useAuth;
