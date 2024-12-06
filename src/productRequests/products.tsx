@@ -45,8 +45,20 @@ export const NewProduct = async (dataProduct: IProduct) => {
 };
 
 export const GetAllProducts = async () => {
+    const token = localStorage.getItem("accessToken");
+
+    if (!token) {
+        throw new Error("Usuário não autenticado. Token não encontrado.");
+    };
+
     try {
-        await api.get('/products')
+        const response = await api.get('/products', {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
+
+        return response.data[0];
     } catch (error: any) {
         if (error.response) {
             console.error("Erro na resposta da API:", error.response.data);
