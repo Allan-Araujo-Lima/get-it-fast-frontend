@@ -24,18 +24,26 @@ export const Produto = () => {
     const { toast } = useToast();
     const navigate = useNavigate();
 
-    const formSchema = z
-        .object({
-            name: z.string().min(2, {
-                message: "Nome deve ter no mínimo 2 letras."
-            }),
-            description: z.string().min(2, {
-                message: "Nome deve ter no mínimo 2 letras."
-            }),
-            price: z.number().positive(),
-            amount: z.number().int().positive(),
-            expiration: z.date()
-        });
+    const formSchema = z.object({
+        name: z.string().min(2, {
+            message: "Nome deve ter no mínimo 2 letras.",
+        }),
+        description: z.string().min(2, {
+            message: "Descrição deve ter no mínimo 2 letras.",
+        }),
+        price: z.number({ message: "Campo obrigatório." }).positive({
+            message: "Preço deve ser um valor positivo.",
+        }),
+        amount: z.number({ message: "Campo obrigatório." }).int().positive({
+            message: "Quantidade deve ser um número inteiro positivo.",
+        }),
+        expiration: z.date({
+            required_error: "Data de vencimento é obrigatória.",
+        }),
+        image: z.instanceof(File, {
+            message: "O arquivo deve ser uma imagem válida (PNG ou JPEG).",
+        }),
+    });
 
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema)
@@ -51,9 +59,9 @@ export const Produto = () => {
                 variant: "default",
             });
 
-            navigate("/")
+            navigate("/");
         } catch (error: any) {
-            console.error("Erro ao cadastrar o produto:", error);
+            console.error("Erro ao cadastrar o produto:", error.message);
 
             toast({
                 title: "Erro ao cadastrar produto",
@@ -176,6 +184,23 @@ export const Produto = () => {
                             )}
                         />
 
+                        <FormField
+                            control={form.control}
+                            name="image"
+                            render={({ field }) => (
+                                <FormItem>
+                                    <FormLabel className="text-gray-700">Imagem do Produto</FormLabel>
+                                    <FormControl>
+                                        <Input
+                                            type="file"
+                                            accept="image/png, image/jpeg"
+                                            onChange={(e) => field.onChange(e.target.files?.[0] || null)}
+                                        />
+                                    </FormControl>
+                                    <FormMessage className="text-red-500 text-sm" />
+                                </FormItem>
+                            )}
+                        />
 
                         <button
                             className="w-full bg-[#766153] hover:bg-[#5e4b3f] text-[#eff1ed] mt-3 py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-blue-300"

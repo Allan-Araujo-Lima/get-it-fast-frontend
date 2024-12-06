@@ -9,6 +9,7 @@ import { Registro } from './pages/registro'
 import { AuthenticationProvider } from './context/authentication'
 import { Produto } from './pages/criarProduto'
 import { Toaster } from './components/ui/toaster'
+import { Mercado } from './pages/mercado'
 import PrivateRoute from './components/wrapper'
 
 function App() {
@@ -31,6 +32,10 @@ function App() {
     {
       path: "/registro",
       element: <Registro />
+    },
+    {
+      path: "/mercado",
+      element: <Mercado />
     },
     {
       path: "/produto/novo",

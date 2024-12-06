@@ -43,7 +43,7 @@ export const Header = () => {
                     </a>
                 </div>
                 <div className="hidden lg:flex items-center gap-8">
-                    <a href="/produto" className="text-sm font-medium hover:underline">
+                    <a href="/mercado" className="text-sm font-medium hover:underline">
                         Mercado
                     </a>
                     <Popover>
