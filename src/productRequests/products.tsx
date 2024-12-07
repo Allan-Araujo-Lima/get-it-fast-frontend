@@ -6,7 +6,7 @@ interface IProduct {
     price: number;
     amount: number;
     expiration: Date;
-    image: File;
+    image: File | string;
 };
 
 export const NewProduct = async (dataProduct: IProduct) => {

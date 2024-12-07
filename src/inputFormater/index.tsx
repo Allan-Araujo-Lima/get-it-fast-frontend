@@ -39,3 +39,17 @@ export const AmountInput = ({ value, onChange, ...props }: any) => {
         />
     )
 }
+
+export const MonetaryOutput = ({ value, ...props }: any) => {
+    return (
+        <NumericFormat
+            value={value}
+            displayType="text"
+            thousandSeparator="."
+            decimalSeparator=","
+            decimalScale={2}
+            fixedDecimalScale={2}
+            {...props}
+        />
+    );
+};
