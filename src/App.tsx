@@ -22,7 +22,14 @@ function App() {
         {
           path: "/",
           element: <Home />
-        }
+        },
+        {
+          path: "/mercado",
+          element:
+            <PrivateRoute>
+              <Mercado />
+            </PrivateRoute>
+        },
       ]
     },
     {
@@ -32,10 +39,6 @@ function App() {
     {
       path: "/registro",
       element: <Registro />
-    },
-    {
-      path: "/mercado",
-      element: <Mercado />
     },
     {
       path: "/produto/novo",

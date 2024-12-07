@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { Button } from '../ui/button';
 import { Popover, PopoverContent, PopoverTrigger } from '../ui/popover';
@@ -28,6 +28,23 @@ const products = [
 
 export const Header = () => {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+    const [authenticated, setAuthenticated] = useState(false);
+
+    useEffect(() => {
+        const isAuthenticated = () => {
+            try {
+                const token = localStorage.getItem('accessToken');
+
+                if (!token) {
+                    setAuthenticated(true)
+                }
+            } catch (error) {
+                console.error("Erro ao buscar JWT")
+            }
+        }
+
+        isAuthenticated();
+    }, [])
 
     return (
         <header className="bg-white border-b">
@@ -75,18 +92,29 @@ export const Header = () => {
                         Sobre nós
                     </a>
                 </div>
-                <div className='lg:flex items-center gap-8'>
-                    <div className="hidden lg:flex">
-                        <a href="/login" className="text-sm font-medium hover:underline">
-                            Entrar →
-                        </a>
-                    </div>
-                    <div className="hidden lg:flex">
-                        <a href="/registro" className="text-sm font-medium hover:underline">
-                            Registrar-se →
-                        </a>
-                    </div>
-                </div>
+                {
+                    authenticated ?
+                        <div className='lg:flex items-center gap-8'>
+                            <div className="hidden lg:flex">
+                                <a href="/login" className="text-sm font-medium hover:underline">
+                                    Entrar →
+                                </a>
+                            </div>
+                            <div className="hidden lg:flex">
+                                <a href="/registro" className="text-sm font-medium hover:underline">
+                                    Registrar-se →
+                                </a>
+                            </div>
+                        </div>
+                        :
+                        <div className='lg:flex items-center gap-8'>
+                            <div className="hidden lg:flex">
+                                <a href="/login" className="text-sm font-medium hover:underline">
+                                    Sair
+                                </a>
+                            </div>
+                        </div>
+                }
                 <button
                     className="lg:hidden p-2"
                     onClick={() => setMobileMenuOpen(true)}
