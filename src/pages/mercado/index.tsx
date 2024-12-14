@@ -33,13 +33,13 @@ export const Mercado = () => {
     return (
         <main className="p-6 bg-gray-100 min-h-screen">
             <h1 className="text-3xl font-bold text-gray-800 mb-6 text-center">Mercado</h1>
-            <article className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <article className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-6">
                 {products.map((product) => (
                     <Card key={product.id} className="hover:shadow-lg transition-shadow" onClick={() => console.log(product)}>
                         <img
                             src={`${import.meta.env.VITE_BACKEND_URL}/uploads/${product.id}.png`}
                             alt={product.name}
-                            className="w-full h-40 object-cover rounded-t-lg"
+                            className="w-full h-40 object-contain rounded-t-lg"
                         />
                         <CardHeader className="p-4">
                             <CardTitle className="text-lg font-semibold">{product.name}</CardTitle>

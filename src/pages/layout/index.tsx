@@ -4,10 +4,10 @@ import { Footer } from "@/components/footer"
 
 export const Layout = () => {
     return (
-        <>
+        <div className="flex flex-col h-screen">
             <Header />
             <Outlet />
             <Footer />
-        </>
+        </div>
     )
 }
