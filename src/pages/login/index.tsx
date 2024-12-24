@@ -14,7 +14,6 @@ export const Login = () => {
     const { toast } = useToast();
     const navigate = useNavigate();
 
-
     const formSchema = z.object({
         email: z.string().email("Email inválido."),
         password: z.string()
