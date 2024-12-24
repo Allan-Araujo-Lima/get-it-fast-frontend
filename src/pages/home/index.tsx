@@ -2,11 +2,8 @@ import { Card, CardContent, CardTitle } from "@/components/ui/card";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
-import { useToast } from "@/hooks/use-toast";
 
 export const Home = () => {
-    const { toast } = useToast();
-
     const carouselItems = [
         {
             title: "Arroz Integral 1kg",
