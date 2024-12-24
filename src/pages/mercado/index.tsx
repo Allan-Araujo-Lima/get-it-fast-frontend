@@ -35,9 +35,9 @@ export const Mercado = () => {
             <h1 className="text-3xl font-bold text-gray-800 mb-6 text-center">Mercado</h1>
             <article className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-6">
                 {products.map((product) => (
-                    <Card key={product.id} className="hover:shadow-lg transition-shadow" onClick={() => console.log(product)}>
+                    <Card key={product.id} className="hover:shadow-lg transition-shadow">
                         <img
-                            src={`${import.meta.env.VITE_BACKEND_URL}/uploads/${product.id}.png`}
+                            src={`${import.meta.env.VITE_BACKEND_URL}/uploads/${product.id}.jpg`}
                             alt={product.name}
                             className="w-full h-40 object-contain rounded-t-lg"
                         />
