@@ -37,7 +37,7 @@ export const Mercado = () => {
                 {products.map((product) => (
                     <Card key={product.id} className="hover:shadow-lg transition-shadow">
                         <img
-                            src={`${import.meta.env.VITE_BACKEND_URL}/uploads/${product.id}.jpg`}
+                            src={`${import.meta.env.VITE_AWS_URL}${product.id}`}
                             alt={product.name}
                             className="w-full h-40 object-contain rounded-t-lg"
                         />
