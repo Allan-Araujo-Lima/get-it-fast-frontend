@@ -1,7 +1,13 @@
-import { Card, CardContent, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
+
+import pera from "../../assets/pera.jpg";
+import hand from "../../assets/icons/hand.svg";
+import earth from "../../assets/icons/earth.svg";
+import handshake from "../../assets/icons/handshake.svg";
+import shopping_cart from "../../assets/icons/shopping-cart.svg";
 
 export const Home = () => {
     const carouselItems = [
@@ -46,14 +52,58 @@ export const Home = () => {
     ];
 
     return (
-        <main className="w-full h-auto text-center p-4">
-            <nav className="mb-6">
-                <h1 className="text-4xl font-bold text-gray-800">Bem-vindo(a) a GetItFast!</h1>
-                <h2 className="text-xl text-gray-600 mt-2">Compre seus produtos conosco</h2>
-                <p className="text-sm text-gray-500 mt-2">
-                    Somos especializados na intermediação de produtos próximos da data de validade.
-                </p>
-            </nav>
+        <main className="w-full h-auto text-center p-4 bg-gray-50">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 rounded-lg overflow-hidden shadow-lg bg-gray-200">
+                <img className="w-0 lg:w-full col-span-1" src={pera} />
+                <div className="flex flex-col justify-between w-full p-6 text-center bg-slate-700 col-span-full lg:col-span-2">
+                    <div className="pt-8">
+                        <h1 className="text-4xl font-bold text-white">Bem-vindo(a) a GetItFast!</h1>
+                        <h2 className="text-xl text-gray-200 mt-2">Compre seus produtos conosco</h2>
+                        <h3 className="text-sm text-gray-300 mt-2">
+                            Somos especializados na intermediação de produtos próximos da data de validade.
+                        </h3>
+                    </div>
+
+                    <div className="grid grid-cols-2 gap-2">
+                        <Card className="p-4 rounded-lg shadow-none bg-transparent border-none">
+                            <CardHeader className="pb-1">
+                                <img src={hand} className="w-12 h-12" />
+                            </CardHeader>
+                            <CardContent className="text-start">
+                                <p className="text-lg font-semibold">Economize até 75%</p>
+                                <p className="text-sm mt-2">Compre produtos de qualidade com descontos incríveis.</p>
+                            </CardContent>
+                        </Card>
+                        <Card className="p-4 rounded-lg shadow-none bg-transparent border-none">
+                            <CardHeader className="pb-1">
+                                <img src={earth} className="w-12 h-12" />
+                            </CardHeader>
+                            <CardContent className="text-start">
+                                <p className="text-lg font-semibold">Sustentabilidade</p>
+                                <p className="text-sm mt-2">Diminua o desperdício e o descarte desnecessário de produtos.</p>
+                            </CardContent>
+                        </Card>
+                        <Card className="p-4 rounded-lg shadow-none bg-transparent border-none">
+                            <CardHeader className="pb-1">
+                                <img src={handshake} className="w-12 h-12" />
+                            </CardHeader>
+                            <CardContent className="text-start">
+                                <p className="text-lg font-semibold">Ajuda coletiva</p>
+                                <p className="text-sm mt-2">Diminuição do prejuízo sofrido pelo desperdício.</p>
+                            </CardContent>
+                        </Card>
+                        <Card className="p-4 rounded-lg shadow-none bg-transparent border-none">
+                            <CardHeader className="pb-1">
+                                <img src={shopping_cart} className="w-12 h-12" />
+                            </CardHeader>
+                            <CardContent className="text-start">
+                                <p className="text-lg font-semibold">Tudo que precisar</p>
+                                <p className="text-sm mt-2">Encontre de tudo aqui na GetItFast.</p>
+                            </CardContent>
+                        </Card>
+                    </div>
+                </div>
+            </div>
 
             <Separator className="my-6" />
 

@@ -12,8 +12,6 @@ import {
     Menu,
     ChartPie,
     Zap,
-    Edit,
-    Trash,
     XIcon,
     ChevronDownIcon
 } from 'lucide-react';
@@ -21,10 +19,8 @@ import {
 import Logo from "../../assets/Logo.svg"
 
 const products = [
-    { name: 'Produtos', description: 'Encontre o produto ideal para você', href: '/produto', icon: ChartPie },
+    { name: 'Meus Produtos', description: 'Encontre o produto ideal para você', href: '/produto', icon: ChartPie },
     { name: 'Novo produto', description: 'Cadastre seus produtos e encontre clientes rapidamente', href: '/produto/novo', icon: Zap },
-    { name: 'Editar produto', description: 'Edite as informações dos seus produtos já cadastrados', href: '#', icon: Edit },
-    { name: 'Excluir produto', description: 'Exclua produtos ', href: '#', icon: Trash },
 ];
 
 export const Header = () => {
