@@ -11,6 +11,7 @@ import { Produto } from './pages/criarProduto'
 import { Toaster } from './components/ui/toaster'
 import { Mercado } from './pages/mercado'
 import PrivateRoute from './components/wrapper'
+import { MyProducts } from './pages/meusProdutos'
 
 function App() {
 
@@ -30,6 +31,13 @@ function App() {
               <Mercado />
             </PrivateRoute>
         },
+        {
+          path: "/meus-produtos",
+          element:
+            <PrivateRoute>
+              <MyProducts />
+            </PrivateRoute>
+        }
       ]
     },
     {

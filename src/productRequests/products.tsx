@@ -69,3 +69,28 @@ export const GetAllProducts = async () => {
         }
     }
 }
+
+export const GetProductsByUser = async () => {
+    const token = localStorage.getItem("accessToken")
+    if (!token) {
+        throw new Error("Usuário não autenticado. Token não encontrado.");
+    };
+
+    try {
+        const response = await api.get('/products/user', {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
+
+        return response.data;
+    } catch (error: any) {
+        if (error.response) {
+            console.error("Erro na resposta da API:", error.response.data);
+            throw { message: error.response.data };
+        } else {
+            console.error("Erro inesperado:", error.message || error);
+            throw { message: error.message };
+        }
+    }
+}

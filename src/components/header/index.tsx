@@ -19,7 +19,7 @@ import {
 import Logo from "../../assets/Logo.svg"
 
 const products = [
-    { name: 'Meus Produtos', description: 'Encontre o produto ideal para você', href: '/produto', icon: ChartPie },
+    { name: 'Meus Produtos', description: 'Encontre o produto ideal para você', href: '/meus-produtos', icon: ChartPie },
     { name: 'Novo produto', description: 'Cadastre seus produtos e encontre clientes rapidamente', href: '/produto/novo', icon: Zap },
 ];
 
